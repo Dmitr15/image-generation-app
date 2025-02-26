@@ -72,8 +72,24 @@ def outpaint_mask(IMAGE_PATH):
     image_extended = np.pad(image, ((padding, padding), (padding, padding), (0, 0)), mode='constant',constant_values=128)
     #cv2_imshow(image_extended)
     cv2.imwrite("image_extended.png", image_extended)
+    return mask, image_extended
 
-#def outpainting()
+def outpainting():
+    init_image = Image.open('image_extended.png')
+    mask_image = Image.open('mask.png')
+    negative_prompt = 'ugly, mutated, disformed'
+    pipe = AutoPipelineForInpainting.from_pretrained(
+        KANDINSKY_MODEL_PATH,
+        torch_dtype=torch.float32
+    ).to('cpu')
+    inpaint_image = pipe(prompt="a dog on a bench in a park",
+                         egative_prompt=negative_prompt,
+                         image=init_image,
+                         mask_image=mask_image,
+                         num_inference_steps=50,
+                         scheduler=EulerDiscreteScheduler.from_config(pipe.scheduler.config)
+                         ).images[0]
+    inpaint_image.save('output1.png')
 # inpainting function
 def inpaint(init_img, mask):
     init_image = Image.open(init_img).convert('RGB')
@@ -94,7 +110,7 @@ def inpaint(init_img, mask):
                  negative_prompt=negative_prompt,
                  image=init_image,
                  mask_image=mask_image,
-                 num_inference_steps=100,
+                 num_inference_steps=10,
                  scheduler=EulerDiscreteScheduler.from_config(pipe.scheduler.config),
                  ).images[0]
     image.save('output.png')
@@ -103,5 +119,6 @@ def inpaint(init_img, mask):
 # mask_generator(img)
 
 #mask = chanel2channels('mask.png')
-outpaint_mask("inpaint-example.png")
+#mask, image = outpaint_mask("inpaint-example.png")
+outpainting()
 #inpaint(img, 'mask.png')
