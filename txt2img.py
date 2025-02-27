@@ -10,7 +10,7 @@ import tiktoken
 list_prompt = [',', ':', ';', ']', '[', '|']
 
 load_dotenv()
-SDV5_MODEL_PATH = os.getenv('SDV5_MODEL_PATH')
+#SDV5_MODEL_PATH = os.getenv('SDV5_MODEL_PATH')
 SAVE_PATH = os.getenv('SAVE_PATH')
 KANDINSKY_MODEL_PATH = os.getenv('KANDINSKY_MODEL_PATH')
 REV_ANIMATED_MODEL_PATH = os.getenv('REV_ANIMATED_MODEL_PATH')
