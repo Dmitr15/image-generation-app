@@ -52,7 +52,6 @@ def binary_mask(init_image):
     mask_image = ImageOps.invert(mask_image)
     return mask_image
 
-
 def make_inpaint_condition(init_img, mask):
     init_image = np.array(init_img.convert("RGB")).astype(np.float32) / 255.0
     mask_image = np.array(mask.convert("L")).astype(np.float32) / 255.0
@@ -107,7 +106,6 @@ if __name__ == '__main__':
     # render_prompt()
     #controlnet = ControlNetModel.from_pretrained(REV_ANIMATED_MODEL_PATH, torch_dtype=torch.float32)
     #scheduler = EulerDiscreteScheduler.from_pretrained(REV_ANIMATED_MODEL_PATH, subfolder="scheduler")
-
     pipeline = AutoPipelineForInpainting.from_pretrained(
         REV_ANIMATED_MODEL_PATH,
         controlnet=controlnet,
@@ -116,12 +114,9 @@ if __name__ == '__main__':
         vae=AutoencoderKL.from_pretrained(
                  VAE_MODEL_PATH,
                  subfolder=None)
-        #requires_safety_checker=False,
-        #safety_checker=None
     ).to('cpu')
     #pipeline.requires_safety_checker = False
     #pipeline.safety_checker = None
-
 
     size = (768, 512)
     init_image = Image.open(base_img)
@@ -168,5 +163,4 @@ if __name__ == '__main__':
                      strength=0.8
                      #generator=torch.manual_seed(189123)
                      ).images[0]
-
     image.save('test1.jpg')
