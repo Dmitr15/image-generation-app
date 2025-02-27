@@ -123,9 +123,9 @@ if __name__ == '__main__':
     #pipeline.safety_checker = None
 
 
-    size = (1024, 704)
+    size = (768, 512)
     init_image = Image.open(base_img)
-    #init_image.thumbnail(size)
+    init_image.thumbnail(size)
     #print(type(init_image))
     init_image = toPill(init_image)
     #print(type(init_image))
@@ -150,6 +150,8 @@ if __name__ == '__main__':
     print(type(bin_mask))
     print(init_image.size)
     print(bin_mask.size)
+    #init_image.show()
+    #bin_mask.show()
     #bin_mask.show()
     #init_image.show()
     image = pipeline(
@@ -161,7 +163,7 @@ if __name__ == '__main__':
                      num_inference_steps=70,
                      image=init_image,
                      mask_image=bin_mask,
-                     #control_image=control_image,
+                     control_image=init_image,
                      guidance_scale=15,
                      strength=0.8
                      #generator=torch.manual_seed(189123)
