@@ -1,0 +1,9 @@
+opencv-python
+torch
+diffusers
+python-dotenv
+controlnet-aux
+pillow
+tiktoken
+numpy
+rembg
