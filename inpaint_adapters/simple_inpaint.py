@@ -43,7 +43,7 @@ callback = SDCFGCutoffCallback(cutoff_step_ratio=0.4)
 prompt = 'concept art digital painting of an elven castle, inspired by lord of the rings, highly detailed, 8k'
 negative_prompt = 'cartoon, cgi, render, illustration, painting, drawing, bad quality, grainy, low resolution'
 base_img = 'C:\\Users\\dovsy\\Pictures\\inpaint.png'
-num_inference_steps = 150
+num_inference_steps = 50
 height = 512
 width = 512
 num_of_img_per_prompt = 1
@@ -72,7 +72,7 @@ def uniquify(path):
 
 def create_pipeline():
     pipeline = AutoPipelineForInpainting.from_pretrained(
-        REV_ANIMATED_MODEL_PATH,
+        KANDINSKY_MODEL_PATH,
         # custom_pipeline="lpw_stable_diffusion",
         # use_safetensors=True,
         torch_dtype=torch.float32,
@@ -117,8 +117,8 @@ def render_prompt():
     for i in range(num_of_img_per_prompt):
         img = pipe(prompt_stylized,
                    negative_prompt=negative_prompt,
-                   scheduler=DDIMScheduler.from_config(pipe.scheduler.config),
-                   num_inference_steps=25,
+                   #scheduler=DDIMScheduler.from_config(pipe.scheduler.config),
+                   num_inference_steps=num_inference_steps,
                    image=init_image,
                    mask_image=bin_mask,
                    height=init_image.height,
