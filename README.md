@@ -32,7 +32,18 @@
 #### Base img:
 ![cat](https://github.com/user-attachments/assets/a46d0385-4c0a-42fa-bae9-dbf9d6b5d16b)
 
+
 #### Result:
 ![ - cat_wizard,_gandalf,_lord](https://github.com/user-attachments/assets/cc883d0f-a51d-425e-aabf-c949a75967cb)
+
+
+### Txr2img with ip adapter and custom vae
+
+#### Prompt: a polar bear sitting in a chair drinking a milkshake
+### Base img:
+![ip_adapter_diner](https://github.com/user-attachments/assets/d6edad7c-daea-4b9a-9505-a17858f7f5a2)
+
+### Result:
+![canny4](https://github.com/user-attachments/assets/238f1067-f6d5-4c3d-b81c-729e0d7a54bc)
 
 ### The project is still under development
